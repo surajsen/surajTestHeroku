@@ -1,0 +1,80 @@
+<apex:page standardStylesheets="true" lightningStylesheets="true" StandardController="Expense__c" recordSetVar="exp" showHeader="false" sidebar="false">
+ 
+   <!-- RS 28/10/2017 (Lightning)-->
+   <apex:includeLightning /> 
+   <div id="lightning" /> 
+   <apex:pageBlock >
+   <apex:outputLink onclick="newExpense()">
+        New Expense
+   </apex:outputLink>
+   <apex:pageBlockTable value="{!exp}" var="ex">
+       <apex:column value="{!ex.Id}"/>
+       <apex:column value="{!ex.Name}"/>
+       <apex:column >
+       <apex:outputLink value="{!URLFOR($Action.Expense__c.Edit, ex.Id)}">
+    Create New Account
+</apex:outputLink>
+           
+       </apex:column>
+   </apex:pageBlockTable>
+   </apex:pageBlock>
+   <script>
+            //var myUserContext = "{!$User.UITheme}";
+            //console.log(myUserContext);
+            debugger;
+            $Lightning.use("c:ReportChartApp", function(){
+            $Lightning.createComponent("c:sampleExpComponent",
+                                       {
+                                       label : "LightningExpense",
+                                       entityApiName: "Expense__c"
+                                       },
+                                       "lightning",
+                                           function(cmp) {
+                                               $A.eventService.addHandler({
+                                                   event: 'force:createRecord',
+                                                   handler: function(event) {
+                                                       if (myUserContext == 'Theme4t' || myUserContext == 'Theme4d') {
+                                                           // The Visualforce page is in S1 or Lightning Experience
+                                                           sforce.one.createRecord(event.getParams().entityApiName);
+                                                       } else if (myUserContext == 'Theme3') {
+                                                           // The Visualforce page is  running in Classic
+                                                           window.parent.location = '/' + event.getParams().entityApiName;
+                                                       } else {
+                                                           console.log("Unsupported theme");   
+                                                       }
+                                                   }
+                                               });
+                                           }
+                                      );
+            });
+            //alert;
+     
+   </script>
+</apex:page>
+
+
+<!--<apex:page standardController="Expense__c" sidebar="true" showHeader="true" standardStylesheets="true">
+<apex:form >
+    <apex:pageblock >
+        <apex:commandButton value="Save" action="{!save}"/>
+        <apex:commandButton value="Delete" action="{!delete}"/>
+         <apex:repeat value="{!$ObjectType.Expense__c.FieldSets.CustomFieldSet}" var="f"> 
+            <apex:inputField value="{!Expense__c[f]}" /><br/>
+    </apex:repeat>
+    <apex:pageblockSection >
+            <!--<apex:outputtext >Enter the Account Name</apex:outputtext>
+            <apex:inputtext value="{!Name}" />-->
+            
+      <!--       <apex:outputField value="{!Expense__c.name}"  />
+       <apex:inlineEditSupport />
+        <apex:inputField styleClass="slds-input" value="{!Expense__c.ownerId}" />
+        <apex:inputField styleClass="slds-output" value="{!Expense__c.Discount__c}"/>
+        <apex:inputField styleClass="slds-output" value="{!Expense__c.Expense_Amount__c}"/>
+        <apex:inputField styleClass="slds-output" value="{!Expense__c.Amount_To_Paid__c}" />-->
+<!--    </apex:pageblockSection>
+    {! $User.UIThemeDisplayed}
+   <apex:detail />
+   
+  </apex:pageBlock>
+</apex:form>
+</apex:page>-->

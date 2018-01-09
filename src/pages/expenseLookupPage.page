@@ -1,0 +1,54 @@
+<apex:page standardStylesheets="true" lightningStylesheets="true" StandardController="Expense__c" recordSetVar="exp" showHeader="false" sidebar="false">
+ 
+   <!-- RS 28/10/2017 (Lightning)-->
+   <apex:includeLightning /> 
+   <div id="lightning" /> 
+   <apex:pageBlock >
+   <apex:outputLink onclick="newExpense()">
+        New Expense
+   </apex:outputLink>
+   <apex:pageBlockTable value="{!exp}" var="ex">
+       <apex:column value="{!ex.Id}"/>
+       <apex:column value="{!ex.Name}"/>
+       <apex:column >
+           <apex:outputLink value="edit" onclick="edit();" id="theLink">Edit</apex:outputLink>
+       </apex:column>
+   </apex:pageBlockTable>
+   </apex:pageBlock>
+   <script>
+     /*    $Lightning.use("c:LightningComponentApplication", function() 
+         {
+              $Lightning.createComponent("c:LookupComponent",
+              {lookupId: "0017F000006Q2tpQAC", 
+              value:"0017F000006Q2tpQAC",
+              },
+              "lightning",
+              );
+         });*/
+         
+            var myUserContext = "{!$User.UITheme}";
+            alert(myUserContext);
+            $Lightning.use("c:RemortChartApp", function() {
+            $Lightning.createComponent("c:sampleExpComponent",
+                                       {entityApiName: 'Expense__c'},
+                                       "lightningComponent",
+                                       function(cmp) {
+                                           $A.eventService.addHandler({
+                                               event: 'force:createRecord',
+                                               handler: function(event) {
+                                                   if (myUserContext == 'Theme4t' || myUserContext == 'Theme4d') {
+                                                       // The Visualforce page is in S1 or Lightning Experience
+                                                       sforce.one.createRecord(event.getParams().entityApiName);
+                                                   } else if (myUserContext == 'Theme3') {
+                                                       // The Visualforce page is  running in Classic
+                                                       window.parent.location = '/' + event.getParams().entityApiName;
+                                                   } else {
+                                                       console.log("Unsupported theme");   
+                                                   }
+                                               }
+                                           });
+                                       }
+                                      );
+            });
+   </script>
+</apex:page>

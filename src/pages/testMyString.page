@@ -1,0 +1,43 @@
+<apex:page controller="opportunityList2Con" sidebar="true">
+    <apex:form >
+    <script>
+//
+
+var j$ = jQuery.noConflict();
+ j$(document).ready(function(){
+               j$('[id$=btn]').click(function(){
+              for (idx = 0; idx < sfFieldIds.length; idx++){
+              twistSection(twisty, sfFieldIds[idx]);
+              alert(twistSection);
+                }
+               });
+           });
+    </script>
+    
+             
+         <apex:commandButton id="btn" value="Collapse All"  rerender="pblock"/>
+         <apex:pageBlock title="MyBlock" id="pblock">
+         <apex:pageMessages />
+         <apex:includeScript value="{!$Resource.jqueryFile}"/>
+                
+        <apex:repeat value="{!opportunities}" var="o">
+     
+        
+            <apex:pageBlockSection title="Opportunities" columns="1" id="sfField">
+
+                        <apex:outputField value="{!o.Name}"/>
+                        <apex:outputField value="{!o.CloseDate}"/>
+              <script type="text/javascript">sfFieldIds.push('{!$Component.sfField}');</script>
+            </apex:pageBlockSection>
+        
+        </apex:repeat>
+
+          
+                    <apex:commandButton value="Next" action="{!next}"/>
+        <apex:commandButton value="Previous" action="{!prev}"/>
+     
+    </apex:pageBlock>
+       
+    
+    </apex:form>
+</apex:page>

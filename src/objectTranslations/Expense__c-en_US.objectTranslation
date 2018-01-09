@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Expense</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Expenses</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Expenses --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Total Amount to Paid after minimising disount --></help>
+        <label><!-- Amount To Paid --></label>
+        <name>Amount_To_Paid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Client --></label>
+        <name>Client__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Expenses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discount --></label>
+        <name>Discount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expense Amount --></label>
+        <name>Expense_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expense Name --></label>
+        <name>Expense_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reimbursed --></label>
+        <name>Reimbursed__c</name>
+    </fields>
+    <layouts>
+        <layout>Expense Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Ltng new --></label>
+        <name>Ltng_new</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- R1 --></label>
+        <name>R1</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- R2 --></label>
+        <name>R2</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <label><!-- ExportThis --></label>
+        <name>ExportThis</name>
+    </webLinks>
+</CustomObjectTranslation>

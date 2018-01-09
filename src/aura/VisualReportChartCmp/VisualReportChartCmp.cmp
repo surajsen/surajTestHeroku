@@ -1,0 +1,10 @@
+<aura:component controller="leanChartReportController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+	<ltng:require scripts="{!$Resource.chartJs}" afterScriptsLoaded="{!c.createChart}"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordName" type="String" />
+    <aura:attribute name="Charttype" type="String"/>
+    <h2>{!v.recordName}</h2>
+    <div class="slds-box">
+		<canvas aura:id="chart" ></canvas>
+    </div>
+</aura:component>

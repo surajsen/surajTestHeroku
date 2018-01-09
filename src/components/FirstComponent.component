@@ -1,0 +1,15 @@
+<apex:component controller="SubmitDataFromController">
+<apex:form >
+ 
+<apex:pageBlock >
+<apex:pageBlockSection title="Folder New">
+<br>First Name<apex:inputText value="{!firstName}"/></br>
+<br>Folder Id<apex:inputText value="{!id}"/></br>
+<apex:commandButton value="Submit"  action="{!submit}" />
+ 
+ 
+</apex:pageBlockSection>
+</apex:pageBlock>
+
+</apex:form>
+</apex:component>

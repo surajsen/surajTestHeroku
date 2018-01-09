@@ -1,0 +1,9 @@
+<apex:page controller="DescribeSObjects">
+     <table>
+     <tr>
+     <apex:repeat value="{!sObjectList}" var="sObjects">
+         <td>{!sObjects}</td>        
+     </apex:repeat>
+     </tr>
+     </table>
+</apex:page>

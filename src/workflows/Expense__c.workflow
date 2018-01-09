@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <outboundMessages>
+        <fullName>ExpenseOutboundMessage</fullName>
+        <apiVersion>40.0</apiVersion>
+        <endpointUrl>https://ap5.salesforce.com/services/apexrest/CustomWebService/</endpointUrl>
+        <fields>Amount_To_Paid__c</fields>
+        <fields>Discount__c</fields>
+        <fields>Expense_Amount__c</fields>
+        <fields>Expense_Name__c</fields>
+        <fields>Id</fields>
+        <fields>Name</fields>
+        <fields>OwnerId</fields>
+        <includeSessionId>true</includeSessionId>
+        <integrationUser>suraj@sunrise.com</integrationUser>
+        <name>ExpenseOutboundMessage</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>ExpenseOutboundMessage</fullName>
+        <actions>
+            <name>ExpenseOutboundMessage</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Expense__c.Amount_To_Paid__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1000</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

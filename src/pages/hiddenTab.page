@@ -1,0 +1,125 @@
+<apex:page controller="HideTabClass" > 
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+/*
+$(document).ready(function(){
+    var pNo = $('#pid').text().length;
+   
+     if(pNo==0)
+         {
+         $("#div3").hide();
+         }
+   
+});*/
+</script>
+<style>
+body {
+   background: #999;  
+   padding: 20px 40px; 
+}
+
+.tabs {
+  position: relative;   
+  min-height: 200px; /* This part sucks */
+  clear: both;
+  margin: 35px 0 25px;
+  background: white;
+}
+.tab {
+  float: left;
+   
+}
+.tab label {
+  background: #eee; 
+  padding: 8px; 
+  border: 1px dotted #ccc; 
+  margin-left: 1px; 
+  position: relative;
+  left: 1px; 
+  top: -29px;
+  -webkit-transition: background-color .17s linear;
+}
+tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc; 
+  -webkit-transition: opacity .6s linear;
+  opacity: 0;
+}
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .content {
+  z-index: 1;
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<div class="tabs">
+    <div class="tab" id="div1">
+       <input type="radio" id="tab-1" name="tab-group-1" checked="checked"/>
+       <label for="tab-1"><apex:outputText >Tab One</apex:outputText></label>
+       <div class="content">
+         <apex:pageBlock >
+           <apex:pageBlockTable value="{!expenses}" var="exp">
+            <apex:column value="{!exp.id}"/>
+            <apex:column value="{!exp.name}"/>
+            <apex:column value="{!exp.Expense_Amount__c}"/>
+            <apex:column value="{!exp.Discount__c}"/>
+           </apex:pageBlockTable>
+         </apex:pageBlock>  
+       </div> 
+   </div>
+    
+   <div class="tab">
+       <input type="radio" id="tab-2" name="tab-group-1"/>
+       <label for="tab-2"><apex:outputText >Tab Two</apex:outputText></label>
+       <div class="content">
+            <apex:pageBlock >
+           <apex:pageBlockTable value="{!expenses}" var="exp">
+      
+            <apex:column value="{!exp.name}"/>
+            <apex:column value="{!exp.Expense_Amount__c}"/>
+            <apex:column value="{!exp.Discount__c}"/>
+           </apex:pageBlockTable>
+         </apex:pageBlock>  
+       </div> 
+   </div>
+    
+   <div class="tab" id="div3">
+       <input type="radio" id="tab-3" name="tab-group-1"/>
+       <label for="tab-3"><apex:outputText id="tabToHide" rendered="{!expenses.size>0}">Tab Three</apex:outputText></label>
+       <div class="content">
+           <apex:pageBlock >
+           <apex:pageBlockTable value="{!expenses}" var="exp">
+      
+            <apex:column value="{!exp.name}"/>
+            <apex:column value="{!exp.Expense_Amount__c}"/>
+      
+           </apex:pageBlockTable>
+         </apex:pageBlock>  
+       </div> 
+   </div>
+</div>
+
+ 
+</body>
+</html>
+
+ 
+</apex:page>
